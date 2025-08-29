@@ -1,0 +1,69 @@
+import java.util.Scanner;
+
+/**
+ * Calculadora Simples
+ * Objetivo: Praticar tipos de dados, variáveis, operadores aritméticos, 
+ * entrada de dados e comandos condicionais
+ */
+public class CalculadoraSimples {
+    
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.println("=== CALCULADORA SIMPLES ===");
+        System.out.println("Operações disponíveis: +, -, *, /");
+        System.out.println();
+        
+        try {
+            // Entrada de dados - solicita os dois números inteiros
+            System.out.print("Digite o primeiro número inteiro: ");
+            int numero1 = scanner.nextInt();
+            
+            System.out.print("Digite o segundo número inteiro: ");
+            int numero2 = scanner.nextInt();
+            
+            // Limpa o buffer do scanner
+            scanner.nextLine();
+            
+            // Solicita a operação
+            System.out.print("Digite a operação (+, -, *, /): ");
+            String operacao = scanner.nextLine().trim();
+            
+            // Declaração da variável resultado
+            double resultado;
+            
+            // Verificação da operação usando comandos condicionais
+            if (operacao.equals("+")) {
+                resultado = numero1 + numero2;
+                System.out.println("\nResultado: " + numero1 + " + " + numero2 + " = " + (int)resultado);
+                
+            } else if (operacao.equals("-")) {
+                resultado = numero1 - numero2;
+                System.out.println("\nResultado: " + numero1 + " - " + numero2 + " = " + (int)resultado);
+                
+            } else if (operacao.equals("*")) {
+                resultado = numero1 * numero2;
+                System.out.println("\nResultado: " + numero1 + " * " + numero2 + " = " + (int)resultado);
+                
+            } else if (operacao.equals("/")) {
+                // Verifica se o divisor é zero
+                if (numero2 == 0) {
+                    System.out.println("\nERRO: Não é possível dividir por zero!");
+                } else {
+                    resultado = (double) numero1 / numero2;
+                    System.out.println("\nResultado: " + numero1 + " / " + numero2 + " = " + resultado);
+                }
+                
+            } else {
+                // Operação inválida
+                System.out.println("\nERRO: Operação '" + operacao + "' não é válida!");
+                System.out.println("Use apenas: +, -, *, /");
+            }
+            
+        } catch (Exception e) {
+            System.out.println("\nERRO: Por favor, digite apenas números inteiros!");
+        } finally {
+            scanner.close();
+        }
+    }
+}
