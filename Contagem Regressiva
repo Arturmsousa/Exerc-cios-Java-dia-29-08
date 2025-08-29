@@ -1,0 +1,103 @@
+import java.util.Scanner;
+
+/**
+ * Contagem Regressiva
+ * Objetivo: Praticar tipos de dados, laços de repetição, 
+ * operadores lógicos e comandos condicionais
+ */
+public class ContagemRegressiva {
+    
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.println("=== CONTAGEM REGRESSIVA ===");
+        System.out.println("Digite um número inteiro positivo para iniciar a contagem!");
+        System.out.println();
+        
+        // Declaração de variáveis
+        int numero = 0;
+        boolean numeroValido = false;
+        
+        // Laço de repetição para entrada válida
+        while (!numeroValido) {
+            System.out.print("Digite um número inteiro positivo: ");
+            
+            try {
+                // Entrada de dados
+                numero = scanner.nextInt();
+                
+                // Operadores lógicos para verificar se o número é negativo ou zero
+                if (numero <= 0) {
+                    System.out.println("⚠️  ERRO: O número deve ser positivo (maior que zero)!");
+                    System.out.println("Programa encerrado.\n");
+                    scanner.close();
+                    return; // Para o programa imediatamente
+                } else {
+                    numeroValido = true; // Número válido, sai do laço
+                }
+                
+            } catch (Exception e) {
+                System.out.println("⚠️  ERRO: Por favor, digite apenas números inteiros!");
+                System.out.println("Tente novamente.\n");
+                // Limpa o buffer do scanner
+                scanner.nextLine();
+            }
+        }
+        
+        System.out.println("\n🚀 Iniciando contagem regressiva de " + numero + "!");
+        System.out.println("Pressione Ctrl+C para interromper a qualquer momento.\n");
+        
+        // Pausa antes de começar
+        try {
+            Thread.sleep(1000); // Pausa de 1 segundo
+        } catch (InterruptedException e) {
+            System.out.println("Contagem interrompida!");
+        }
+        
+        // Laço de repetição para contagem regressiva (usando while)
+        while (numero > 0) {
+            if (numero == 1) {
+                System.out.println("🔥 Falta " + numero + " segundo!");
+            } else {
+                System.out.println("⏰ Faltam " + numero + " segundos");
+            }
+            
+            // Decrementa o número
+            numero--;
+            
+            // Pausa de 1 segundo entre cada número
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                System.out.println("\nContagem interrompida pelo usuário!");
+                scanner.close();
+                return;
+            }
+        }
+        
+        // Quando a contagem chega a zero
+        System.out.println("\n🎉 TEMPO ESGOTADO! 🎉");
+        System.out.println("A contagem regressiva chegou ao fim!");
+        
+        // Versão alternativa usando laço for (comentada)
+        /*
+        System.out.println("\n--- Versão alternativa com laço FOR ---");
+        for (int i = numero; i > 0; i--) {
+            if (i == 1) {
+                System.out.println("🔥 Falta " + i + " segundo!");
+            } else {
+                System.out.println("⏰ Faltam " + i + " segundos");
+            }
+            
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                System.out.println("Contagem interrompida!");
+                break;
+            }
+        }
+        */
+        
+        scanner.close();
+    }
+}
